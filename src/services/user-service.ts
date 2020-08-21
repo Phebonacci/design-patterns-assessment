@@ -8,11 +8,8 @@ import { TYPES } from '../models/types';
 
 @injectable()
 export class UserService implements IUserSevice {
-  private _httpClient: IHttpClient;
-
-  constructor(@inject(TYPES.IHttpClient) httpClient: IHttpClient) {
-    this._httpClient = httpClient;
-  }
+  @inject(TYPES.IHttpClient)
+  private _httpClient!: IHttpClient;
 
   getUsers(): Promise<User[]> {
     return this._httpClient.get<User[]>('https://jsonplaceholder.typicode.com/users');
